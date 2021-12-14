@@ -13,15 +13,17 @@ diary.print_LL()
 
 
 page_number = int(input('Enter the page number: '))
-access = int(input('To read, press 1 \n To write, press 2 \n'))
+access = input('Read(r), Write(w) : ')
 
-while True:
-    if access == 1:
-        file = open(path+f'\\{page_number}.txt', 'r')
-        print(file.read())
-        next_page = input('Do you wants to go to next page (y/n): ')
-        if next_page == 'y':
-            inc_page_number = page_number+1
-            file = open(diary.move_next_node(path+f'\\{page_number}.txt'))
-        elif next_page == 'n':
-            break
+if access == 'r':
+    file = open(path+f'\\{page_number}.txt', 'r')
+    print(file.read())
+
+    while True:        
+            next_page = input('Do you wants to go to next page (y/n): ')
+            if next_page == 'y':
+                page_number = page_number+1
+                file = open(diary.move_next_node(path+f'\\{page_number}.txt'))
+                print(file.read())
+            elif next_page == 'n':
+                break
