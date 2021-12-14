@@ -15,4 +15,12 @@ diary.print_LL()
 page_number = int(input('Enter the page number: '))
 access = int(input('To read, press 1 \n To write, press 2 \n'))
 
-
+while True:
+    if access == 1:
+        file = open(path+f'\\{page_number}.txt', 'r')
+        print(file.read())
+        next_page = input('Do you wants to go to next page (y/n): ')
+        if next_page == 'y':
+            diary.move_next_node(path+f'\\{page_number}.txt')
+        elif next_page == 'n':
+            break
