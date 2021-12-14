@@ -75,3 +75,11 @@ class LinkedList:
             n.ref = new_node
             
                 
+
+if __name__ == '__main__':
+    ll = LinkedList()
+    ll.add_begin('this is first node')
+    ll.add_end('this is the end node')
+    ll.add_before('this is second last node', 'this is the end node')
+    ll.add_after('this is second node', 'this is first node')
+    ll.print_LL()
