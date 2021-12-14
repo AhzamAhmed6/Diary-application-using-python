@@ -52,14 +52,34 @@ class LinkedList:
             new_node = Node(data) # if we found the required node, only then we create new node
             new_node.ref = n.ref  # set the refrence of new node to the next node (the addres of next node is initially stored in the n.ref)
             n.ref = new_node      # set the refrence of perivous node to the new_node
+
+    def add_before(self, data, x):
+        if self.head is None:
+            print('The linked list is empty')
+            return
+        if self.head.data==x:
+            new_node = Node(data)     # we create new node with data=data  and  ref=Null
+            new_node.ref = self.head  # we set the refrence of new node to the head
+            self.head = new_node 
+            return
+        n = self.head
+        while n.ref is not None:
+            if n.ref.data==x:
+                break
+            n = n.ref
+        if n.ref==None:
+            print('The targeted node not found')
+        else:
+            new_node = Node(data) # if we found the required node, only then we create new node
+            new_node.ref = n.ref  # set the refrence of new node to the next node (the addres of next node is initially stored in the n.ref)
+            n.ref = new_node
             
+                
 
-LL1 = LinkedList()
-LL1.add_begin('ahzam')
-LL1.add_end('ahmed')
-LL1.add_begin('my name is')
-LL1.add_end('yes this is my name')
-LL1.print_LL()
-
-        # self.head is just store the refrence of first node 
+ll = LinkedList()
+ll.add_begin('this is first node1')
+ll.add_end('this is last node')
+ll.add_before('this is before end', 'this is last node')
+ll.add_after('this is after first node', 'this is first node1')
+ll.print_LL()
 
