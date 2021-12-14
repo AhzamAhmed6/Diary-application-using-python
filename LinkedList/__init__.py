@@ -22,7 +22,7 @@ class LinkedList:
         else:
             n = self.head
             while n is not None:
-                print(n.data, '--->', end=' ')
+                print(n.data)
                 n = n.ref
 
     def add_begin(self, data):

@@ -3,7 +3,10 @@ import sys
 
 
 path = r'C:\Users\Lenovo\Downloads\visual stdio programs\Python_Programs\Data-Structure-Project-2\pages'
-for i in range(100):
-    open(path+'\'+i+'.txt', 'rw')
-
-
+diary = LinkedList()
+diary.add_begin(path+'\\1.txt')
+diary.add_after(path+'\\2.txt', path+'\\1.txt')
+diary.add_after(path+'\\3.txt', path+'\\2.txt')
+diary.add_after(path+'\\4.txt', path+'\\3.txt')
+diary.add_after(path+'\\5.txt', path+'\\4.txt')
+diary.print_LL()
