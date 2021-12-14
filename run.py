@@ -21,6 +21,7 @@ while True:
         print(file.read())
         next_page = input('Do you wants to go to next page (y/n): ')
         if next_page == 'y':
-            diary.move_next_node(path+f'\\{page_number}.txt')
+            inc_page_number = page_number+1
+            file = open(diary.move_next_node(path+f'\\{page_number}.txt'))
         elif next_page == 'n':
             break

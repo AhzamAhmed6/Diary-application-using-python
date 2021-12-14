@@ -74,7 +74,7 @@ class LinkedList:
             new_node.ref = n.ref  # set the refrence of new node to the next node (the addres of next node is initially stored in the n.ref)
             n.ref = new_node
 
-    def move_next_node(self, data, x):
+    def move_next_node(self, x):
         n = self.head
         while n is not None:      # first we find the node after which we wants to add the new_node
             if x==n.data:         # if we found the new node then we set the node name as n and break the loop
