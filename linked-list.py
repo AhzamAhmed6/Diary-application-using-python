@@ -8,7 +8,7 @@ class Node:
         self.ref = None
 
 class LinkedList:
-    '''This class is for linked the nodes which we create using class Node'''
+    '''This class is for performing the operations to the node which we create using class Node'''
 
     def __init__(self):
         self.head = None        # we are creating an empty linked list (remember we are not creating a node, we are creating linked list, for creating node we already have method above)
@@ -30,8 +30,19 @@ class LinkedList:
         new_node.ref = self.head  # we set the refrence of new node to the head
         self.head = new_node      # set the head to the new node
 
+    def add_end(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node  # if linked list is empty, then we set newely created node as head
+        else:
+            n = self.head
+            while n.ref is not None:
+                n = n.ref         # to reach to the last node
+            n.ref = new_node      # set the refrence of last node to the new node
 
-
+LL1 = LinkedList()
+LL1.add_begin('ahzam')
+LL1.print_LL()
 
         # self.head is just store the refrence of first node 
 
