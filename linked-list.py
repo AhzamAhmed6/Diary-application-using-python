@@ -75,11 +75,3 @@ class LinkedList:
             n.ref = new_node
             
                 
-
-ll = LinkedList()
-ll.add_begin('this is first node1')
-ll.add_end('this is last node')
-ll.add_before('this is before end', 'this is last node')
-ll.add_after('this is after first node', 'this is first node1')
-ll.print_LL()
-
