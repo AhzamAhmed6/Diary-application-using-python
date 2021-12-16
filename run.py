@@ -13,16 +13,15 @@ def create_pages(pages, path):
 
 page_number = int(input('Enter the page number: '))
 def myClick(page_number=page_number):
-    p = fr'{path}\{page_number-1}.txt'
-    subprocess.call(['notepad.exe', p])
-    p = diary.move_next_node(p)
-    page_number += 1
+    p = fr'{path}\{page_number}.txt'
+    for i in range(3):
+        subprocess.call(['notepad.exe', p])
+        p = diary.move_next_node(p)
 
 path = r'C:\Users\Lenovo\Downloads\visual stdio programs\Python_Programs\Data-Structure-Project-2\pages'
 diary = create_pages(10, path)
 
-
 root = Tk()
-myButton = Button(root, text = 'Click Me!', command=myClick)
+myButton = Button(root, text = 'Next Page', command=myClick)
 myButton.pack()
 root.mainloop()
