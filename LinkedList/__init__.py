@@ -62,6 +62,8 @@ class Doubly_LL:
 
 
     def add_end(self, data):
+        '''This methord add a new node at the end of the doubly linked list'''
+
         new_node = Node(data)
         if self.head == None:
             self.head = new_node
@@ -73,7 +75,24 @@ class Doubly_LL:
             new_node.pref = n
 
 
+    def add_after(self, x, data):
+        n = self.head
+        if self.head is None:
+            print('Linked list is empty')
+        else:
+            while n is not None:
+                if x==n.data:
+                    break
+                n = n.nref
+            if n is None:
+                print('The given node is not present in the Linked List')
+            new_node = Node(data)
+            new_node.pref = n
+
+
     def one_step_forward(self, x):
+        '''This step move the current pointer one step forward from the current node'''
+
         n = self.head
         while n is not None:
             if x==n.data:
@@ -85,6 +104,8 @@ class Doubly_LL:
 
 
     def one_step_backward(self, x):
+        '''This step move the current pointer one step backward from the current node'''
+
         n = self.head
         while n is not None:
             if x==n.nref.data:

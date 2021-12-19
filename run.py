@@ -4,11 +4,11 @@ import subprocess
 import os
 
 def create_pages(path, pages=10):
-    diary = LinkedList()
+    diary = Doubly_LL()
     diary.add_begin(path+fr'\1.txt')
     # open(path+r'\1.txt', 'w')/
     for i in range(2,pages+1):
-        diary.add_after(path+fr'\{i}.txt', path+fr'\{i-1}.txt')
+        diary.add_end(path+fr'\{i}.txt')
         # open(path+fr'\{i}.txt', 'w')
     return diary
 
@@ -20,10 +20,15 @@ diary = create_pages(path, 10)
 p = fr'{path}\{page_number}.txt'
 os.system(p)
 while True:    
-    next_page = input('Next Page?\nYes(y),   No(n)  : ')
-    if next_page == 'y':
-        p = diary.move_next_node(p)
+    next_page = input('Next Page(n), Perivous Page(p), Exit(e): ')
+    if next_page == 'n':
+        p = diary.one_step_forward(p)
         # p = fr'{path}\{page_number}.txt'
+        os.system(p)
+    elif next_page == 'p':
+        p = diary.one_step_backward(p)
         os.system(p)       
-    else:
+    elif next_page == 'e':
         break
+    else:
+        print('chose valid option')
