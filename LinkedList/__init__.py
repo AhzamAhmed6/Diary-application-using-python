@@ -73,13 +73,28 @@ class Doubly_LL:
             new_node.pref = n
 
 
+    def one_step_forward(self, x):
+        n = self.head
+        while n is not None:
+            if x==n.data:
+                break
+            n = n.nref
+        n = n.nref
+        next_node = n
+        return next_node.data
+        
+
+
+
+
 
 
          
 if __name__ == '__main__':
     mynode = Doubly_LL()
-    mynode.add_empty('adding in the empty linked list')
-    mynode.add_end('adding at the end of linked list')
-    mynode.add_begin('adding at the beginging of the linked list')
-    mynode.print_LL_forward()
-    mynode.print_LL_reverse()
+    mynode.add_begin('5')
+    mynode.add_begin('4')
+    mynode.add_begin('3')
+    mynode.add_begin('2')
+    mynode.add_begin('1')
+    print(mynode.one_step_forward('1'))
