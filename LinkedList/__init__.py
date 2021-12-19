@@ -82,8 +82,17 @@ class Doubly_LL:
         n = n.nref
         next_node = n
         return next_node.data
-        
 
+
+    def one_step_backward(self, x):
+        n = self.head
+        while n is not None:
+            if x==n.nref.data:
+                break
+            n = n.nref
+        previous_node = n
+        return previous_node.data
+        
 
 
 
@@ -97,4 +106,4 @@ if __name__ == '__main__':
     mynode.add_begin('3')
     mynode.add_begin('2')
     mynode.add_begin('1')
-    print(mynode.one_step_forward('1'))
+    print(mynode.one_step_backward('2'))
