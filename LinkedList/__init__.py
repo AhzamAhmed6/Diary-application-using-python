@@ -83,4 +83,3 @@ if __name__ == '__main__':
     mynode.add_begin('adding at the beginging of the linked list')
     mynode.print_LL_forward()
     mynode.print_LL_reverse()
-    d
