@@ -1,6 +1,4 @@
 from LinkedList import *
-from tkinter import *
-import subprocess
 import os
 
 def create_pages(path, pages=10):
