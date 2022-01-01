@@ -40,6 +40,17 @@ def repeat_process(diary):
 
 
 
+    # create perivous page button
+    def next_page():
+        global path
+        path=diary.one_step_backward(path)
+        root.destroy()
+        repeat_process(diary=diary)
+    b2 = Button(root, text='Perivous Page', command=next_page)
+    b2.pack(pady=20)
+
+
+
     # create main frome
     my_frame = Frame(root)
     my_frame.pack(pady=5)
