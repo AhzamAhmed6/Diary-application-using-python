@@ -3,15 +3,17 @@ from tkinter import filedialog
 from tkinter import font
 from LinkedList import *
 
-i = 1
-def repeat_process():
-    path = fr'C:\Users\Lenovo\Downloads\visual_stdio_programs\Python_Programs\Data-Structure-Project-2\pages\{i}.txt'
-    def create_pages(path, pages=10):
-        diary = Doubly_LL()
-        diary.add_begin(path+fr'\1.txt')
-        for i in range(2,pages+1):
-            diary.add_end(path+fr'\{i}.txt')
-        return diary
+def create_pages(path, pages=10):
+    diary = Doubly_LL()
+    diary.add_begin(path+fr'\1.txt')
+    for i in range(2,pages+1):
+        diary.add_end(path+fr'\{i}.txt')
+    return diary
+
+
+
+def repeat_process(diary):
+
 
 
 
@@ -29,10 +31,10 @@ def repeat_process():
 
     # create next page button
     def next_page():
-        global i
-        i+=1
+        global path
+        path=diary.one_step_forward(path)
         root.destroy()
-        repeat_process()
+        repeat_process(diary=diary)
     b2 = Button(root, text='Next Page', command=next_page)
     b2.pack(pady=20)
 
@@ -64,4 +66,8 @@ def repeat_process():
 
     root.mainloop()
 
-repeat_process()
+
+path = r'C:\Users\Lenovo\Downloads\visual_stdio_programs\Python_Programs\Data-Structure-Project-2\pages'
+diary = create_pages(path)
+path = r'C:\Users\Lenovo\Downloads\visual_stdio_programs\Python_Programs\Data-Structure-Project-2\pages\1.txt'
+repeat_process(diary=diary)
