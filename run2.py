@@ -3,6 +3,8 @@ from tkinter import filedialog
 from tkinter import font
 from LinkedList import *
 
+
+
 def create_pages(path, pages=10):
     diary = Doubly_LL()
     diary.add_begin(path+fr'\1.txt')
@@ -10,23 +12,20 @@ def create_pages(path, pages=10):
         diary.add_end(path+fr'\{i}.txt')
     return diary
 
-
+global open_status
+open_status = False
 
 def repeat_process(diary):
-
-
-
 
     root = Tk()
     root.geometry('1200x660')
 
-
+    
     # create a quit button
     def quit():
         root.destroy()
     b2 = Button(root, text='Quit', command=quit)
     b2.pack(pady=20)
-
 
 
     # create next page button
@@ -39,7 +38,6 @@ def repeat_process(diary):
     b2.pack(pady=20)
 
 
-
     # create perivous page button
     def next_page():
         global path
@@ -48,7 +46,6 @@ def repeat_process(diary):
         repeat_process(diary=diary)
     b2 = Button(root, text='Perivous Page', command=next_page)
     b2.pack(pady=20)
-
 
 
     # create main frome
@@ -61,9 +58,23 @@ def repeat_process(diary):
     my_text.pack()
 
     text_file = open(path, 'r+')
+    global open_status    
+    open_status = text_file
     stuff = text_file.read()
     my_text.insert(END, stuff)
     text_file.close()
+
+
+
+    # create save_file function
+    def save_file():
+        global open_status
+        if open_status:
+            text_file = open(path, 'r+')
+            text_file.write(my_text.get(1.0, END))
+            text_file.close()
+
+
 
 
     # create menue
@@ -72,8 +83,7 @@ def repeat_process(diary):
 
     file_menu = Menu(my_menu, tearoff=False)
     my_menu.add_cascade(label='File', menu=file_menu)
-    file_menu.add_command(label='Open diary')
-    file_menu.add_command(label='save')
+    file_menu.add_command(label='save', command=save_file)
 
     root.mainloop()
 
