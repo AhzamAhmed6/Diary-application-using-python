@@ -24,25 +24,34 @@ def repeat_process(diary):
         path=diary.one_step_forward(path)
         root.destroy()
         repeat_process(diary=diary)
-    b2 = Button(root, text='Next Page', command=next_page)
-    b2.pack()
+    b1 = Button(root, text='Next Page >>', command=next_page)
+    b1.pack()
 
 
     # create perivous page button
-    def next_page():
+    def privous_page():
         global path
         path=diary.one_step_backward(path)
         root.destroy()
         repeat_process(diary=diary)
-    b2 = Button(root, text='Perivous Page', command=next_page)
+    b2 = Button(root, text='<< Perivous Page', command=privous_page)
     b2.pack()
+
+
+# create save_file function
+    def save_file():
+        text_file = open(path, 'r+')
+        text_file.write(my_text.get(1.0, END))
+        text_file.close()
+    b3 = Button(root, text='Save', command=save_file)
+    b3.pack()
 
 
     # create a quit button
     def quit():
         root.destroy()
-    b2 = Button(root, text='Quit', command=quit)
-    b2.pack()
+    b4 = Button(root, text='Quit !!', command=quit)
+    b4.pack()
 
 
     # create main frome
@@ -57,24 +66,16 @@ def repeat_process(diary):
     text_file = open(path, 'r+')
     stuff = text_file.read()
     my_text.insert(END, stuff)
-    text_file.close()
-
-
-
-    # create save_file function
-    def save_file():
-        text_file = open(path, 'r+')
-        text_file.write(my_text.get(1.0, END))
-        text_file.close()
+    text_file.close()    
 
 
     # create menue
-    my_menu = Menu(root)
-    root.config(menu=my_menu)
+    # my_menu = Menu(root)
+    # root.config(menu=my_menu)
 
-    file_menu = Menu(my_menu, tearoff=False)
-    my_menu.add_cascade(label='File', menu=file_menu)
-    file_menu.add_command(label='save', command=save_file)
+    # file_menu = Menu(my_menu, tearoff=False)
+    # my_menu.add_cascade(label='File', menu=file_menu)
+    # file_menu.add_command(label='save', command=save_file)
 
     root.mainloop()
 
