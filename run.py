@@ -68,15 +68,6 @@ def repeat_process(diary):
     my_text.insert(END, stuff)
     text_file.close()    
 
-
-    # create menue
-    # my_menu = Menu(root)
-    # root.config(menu=my_menu)
-
-    # file_menu = Menu(my_menu, tearoff=False)
-    # my_menu.add_cascade(label='File', menu=file_menu)
-    # file_menu.add_command(label='save', command=save_file)
-
     root.mainloop()
 
 

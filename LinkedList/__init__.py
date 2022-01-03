@@ -24,6 +24,7 @@ class Doubly_LL:
             while n is not None:
                 print(n.data, end=('  -->  '))
                 n = n.nref
+            print()
 
     def print_LL_reverse(self):
         '''This methord is for traversing doubly Linked List in the backward direction'''
@@ -37,16 +38,6 @@ class Doubly_LL:
             while n is not None:         # then we start reverse traversing
                 print(n.data, end='  -->  ')
                 n = n.pref
-
-
-    def add_empty(self, data):
-        '''Tis methord is for adding a new node in the empty Linked List'''
-
-        if self.head is None:
-            new_node = Node(data)
-            self.head = new_node
-        else:
-            print('Linked List is not empty')
 
 
     def add_begin(self, data):
@@ -72,21 +63,6 @@ class Doubly_LL:
             while n.nref is not None:
                 n = n.nref
             n.nref = new_node
-            new_node.pref = n
-
-
-    def add_after(self, x, data):
-        n = self.head
-        if self.head is None:
-            print('Linked list is empty')
-        else:
-            while n is not None:
-                if x==n.data:
-                    break
-                n = n.nref
-            if n is None:
-                print('The given node is not present in the Linked List')
-            new_node = Node(data)
             new_node.pref = n
 
 
@@ -123,8 +99,18 @@ class Doubly_LL:
 if __name__ == '__main__':
     mynode = Doubly_LL()
     mynode.add_begin('5')
+    mynode.print_LL_forward()
     mynode.add_begin('4')
+    mynode.print_LL_forward()
     mynode.add_begin('3')
+    mynode.print_LL_forward()
     mynode.add_begin('2')
+    mynode.print_LL_forward()
     mynode.add_begin('1')
+    mynode.print_LL_forward()
+    mynode.add_end('6')
+    mynode.print_LL_forward()
+    mynode.add_end('7')
+    mynode.print_LL_forward()
     print(mynode.one_step_backward('2'))
+    print(mynode.one_step_forward('4'))
