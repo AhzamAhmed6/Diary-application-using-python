@@ -50,7 +50,7 @@ def repeat_process(diary):
         
         open(fr'{path1}\{page_number+1}.txt', 'a')  # OK
         number_of_files_in_pages+=1
-        diary = create_pages(path1, n=number_of_files_in_pages)
+        diary = create_pages(path1, n=number_of_files_in_pages+1)
         page_number+=1
         path2=diary.one_step_forward(path2)
         root.destroy()
