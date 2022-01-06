@@ -7,7 +7,7 @@ import os
 def create_pages(path1, n):
     diary = Doubly_LL()
     diary.add_begin(path1+fr'\1.txt')
-    for i in range(2, n+1):
+    for i in range(2, n):
         diary.add_end(path1+fr'\{i}.txt')
     return diary
 
