@@ -20,11 +20,14 @@ class Doubly_LL:
         if self.head is None:           # if the linked list is empty
             print('The linked list is empty')
         else:
+            pn=0
             n = self.head
             while n is not None:
                 print(n.data, end=('  -->  '))
                 n = n.nref
+                pn+=1
             print()
+        return pn
 
     def print_LL_reverse(self):
         '''This methord is for traversing doubly Linked List in the backward direction'''
@@ -89,6 +92,26 @@ class Doubly_LL:
             n = n.nref
         previous_node = n
         return previous_node.data
+
+
+    def add_after(self,data,x):
+        n = self.head
+        while n is not None:
+            if x == n.data:
+                break
+            n = n.nref
+        if n is None:
+            print("Given Node is not presnt in Linked List!")
+        elif n.nref is None:
+            new_node = Node(data)
+            n.nref = new_node
+            new_node.pref = n
+        else:
+            new_node = Node(data)
+            n.nref.pref = new_node
+            new_node.nref = n.nref
+            n.nref = new_node
+            new_node.pref = n
         
 
 
