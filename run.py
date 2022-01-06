@@ -34,17 +34,11 @@ def repeat_process(diary):
     # create next page button
     def next_page():
         global path2, page_number
-        # number_of_files_in_pages=nop()
-        # if page_number<number_of_files_in_pages:
-        #     page_number+=1
         path2=diary.one_step_forward(path2)
         print(page_number)
         root.destroy()
         page_number+=1
         repeat_process(diary=diary)
-    common_img = PhotoImage(width=1, height=1)
-    b1 = Button(root, text='Next Page >>', image=common_img, width=100, height=20, compound='c', command=next_page)
-    b1.pack()
 
 
     # create add page button
@@ -62,11 +56,8 @@ def repeat_process(diary):
         root.destroy()
         repeat_process(diary=diary)
 
-    b6 = Button(root, text='Add Page', image=common_img, width=100, height=20, compound='c', command=add_page)
-    b6.pack()
 
-
-    # create perivous page button
+    # # create perivous page button
     def privous_page():
         global path2, page_number
         # if page_number>1:
@@ -76,29 +67,24 @@ def repeat_process(diary):
         root.destroy()
         page_number-=1
         repeat_process(diary=diary)
-    b2 = Button(root, text='<< Perivous Page', image=common_img, width=100, height=20, compound='c', command=privous_page)
-    b2.pack()
 
 
-    # create save_file function
+    # # create save_file function
     def save_file():
         text_file = open(path2, 'w')
         text_file.write(my_text.get(1.0, END))
         text_file.close()
-    b3 = Button(root, text='Save', image=common_img, width=100, height=20, compound='c', command=save_file)
-    b3.pack()
 
 
     # create a quit button
     def quit():
         root.destroy()
-    b4 = Button(root, text='Quit !!', image=common_img, width=100, height=20, compound='c', command=quit)
-    b4.pack()
+
 
 
     # create main frome
     my_frame = Frame(root)
-    my_frame.pack(pady=5)
+    my_frame.grid(row=2, column=0, sticky="ns")
 
 
     # create text box
@@ -108,7 +94,20 @@ def repeat_process(diary):
     text_file = open(path2, 'r+')
     stuff = text_file.read()
     my_text.insert(END, stuff)
-    text_file.close()    
+    text_file.close()  
+
+    my_menu = Menu(root)
+    root.config(menu=my_menu)
+
+
+    # create menue bar
+    file_menu = Menu(my_menu, tearoff=False)
+    my_menu.add_cascade(label='File', menu=file_menu)
+    file_menu.add_command(label='New', command=add_page) 
+    file_menu.add_command(label='Next Page', command=next_page) 
+    file_menu.add_command(label='Perivous Page', command=privous_page)
+    file_menu.add_command(label='Save', command=save_file)  
+    file_menu.add_command(label='Exit', command=quit) 
 
     root.mainloop()
 
