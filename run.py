@@ -57,6 +57,24 @@ def repeat_process(diary):
         repeat_process(diary=diary)
 
 
+
+    # create delete page button
+    def delete_page():
+        global path1,path2, page_number, diary
+        number_of_files_in_pages=nop()
+        os.remove(fr'{path1}\{page_number}.txt')
+        for page in range(page_number, number_of_files_in_pages):
+            os.rename(fr'{path1}\{page+1}.txt', fr'{path1}\{page}.txt')
+        
+        open(fr'{path1}\{page_number}.txt', 'r+')  # OK
+        number_of_files_in_pages-=1
+        diary = create_pages(path1, n=number_of_files_in_pages+1)
+        # page_number+=1
+        # path2=diary.one_step_forward(path2)
+        root.destroy()
+        repeat_process(diary=diary)
+
+
     # # create perivous page button
     def privous_page():
         global path2, page_number
@@ -104,6 +122,7 @@ def repeat_process(diary):
     file_menu = Menu(my_menu, tearoff=False)
     my_menu.add_cascade(label='File', menu=file_menu)
     file_menu.add_command(label='New', command=add_page) 
+    file_menu.add_command(label='Delete', command=delete_page)
     file_menu.add_command(label='Next Page', command=next_page) 
     file_menu.add_command(label='Perivous Page', command=privous_page)
     file_menu.add_command(label='Save', command=save_file)  
