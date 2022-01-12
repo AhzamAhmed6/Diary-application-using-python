@@ -62,17 +62,24 @@ def repeat_process(diary):
     def delete_page():
         global path1,path2, page_number, diary
         number_of_files_in_pages=nop()
-        os.remove(fr'{path1}\{page_number}.txt')
-        for page in range(page_number, number_of_files_in_pages):
-            os.rename(fr'{path1}\{page+1}.txt', fr'{path1}\{page}.txt')
-        
-        open(fr'{path1}\{page_number}.txt', 'r+')  # OK
-        number_of_files_in_pages-=1
-        diary = create_pages(path1, n=number_of_files_in_pages+1)
-        # page_number+=1
-        # path2=diary.one_step_forward(path2)
-        root.destroy()
-        repeat_process(diary=diary)
+        if number_of_files_in_pages == page_number:
+            path2=diary.one_step_backward(path2)
+            os.remove(fr'{path1}\{page_number}.txt')
+            root.destroy()
+            page_number-=1
+            repeat_process(diary=diary)
+        else:
+            os.remove(fr'{path1}\{page_number}.txt')
+            for page in range(page_number, number_of_files_in_pages):
+                os.rename(fr'{path1}\{page+1}.txt', fr'{path1}\{page}.txt')
+            
+            open(fr'{path1}\{page_number}.txt', 'r+')  # OK
+            number_of_files_in_pages-=1
+            diary = create_pages(path1, n=number_of_files_in_pages+1)
+            # page_number+=1
+            # path2=diary.one_step_forward(path2)
+            root.destroy()
+            repeat_process(diary=diary)
 
 
     # # create perivous page button
