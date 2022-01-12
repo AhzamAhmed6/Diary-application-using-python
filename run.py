@@ -34,11 +34,15 @@ def repeat_process(diary):
     # create next page button
     def next_page():
         global path2, page_number
-        path2=diary.one_step_forward(path2)
-        print(page_number)
-        root.destroy()
-        page_number+=1
-        repeat_process(diary=diary)
+        number_of_files_in_pages=nop()
+        if number_of_files_in_pages == page_number:
+            pass
+        else:
+            path2=diary.one_step_forward(path2)
+            print(page_number)
+            root.destroy()
+            page_number+=1
+            repeat_process(diary=diary)
 
 
     # create add page button
@@ -85,13 +89,16 @@ def repeat_process(diary):
     # # create perivous page button
     def privous_page():
         global path2, page_number
-        # if page_number>1:
-        #     page_number-=1
-        path2=diary.one_step_backward(path2)
-        print(page_number)
-        root.destroy()
-        page_number-=1
-        repeat_process(diary=diary)
+        if page_number==1:
+            pass
+        else:
+            # if page_number>1:
+            #     page_number-=1
+            path2=diary.one_step_backward(path2)
+            print(page_number)
+            root.destroy()
+            page_number-=1
+            repeat_process(diary=diary)
 
 
     # # create save_file function
